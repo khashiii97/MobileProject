@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">پروژه پایانی</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">تنظیمات</string>
+
+    <!-- Fragments strings -->
+    <string name="monday">دوشنبه</string>
+    <string name="tuesday">سه شنبه</string>
+    <string name="wednesday">چهار شنبه</string>
+    <string name="thursday">پنح شنبه</string>
+    <string name="friday">جمعه</string>
+    <string name="saturday">شنبه</string>
+    <string name="sunday">یکشنبه</string>
+    <string name="select_snackbar">لطفاً یکی را انتخاب کن</string>
+    <string name="selected">انتخاب شد</string>
+
+    <!-- Main Activity strings -->
+    <string name="timetable">TimeTable</string>
+    <string name="ulan_nurymov_gmail_com">ulan.nurymov@gmail.com</string>
+    <string name="seven_days_of_the_week">هر هفت روز هفته</string>
+    <string name="subject">درس</string>
+    <string name="field_error">نمیشه خالی بگذاری!</string>
+    <string name="time_error">نمیشه زمان رو نگذاری!</string>
+    <string name="week">هفته</string>
+    <string name="delete">پاک کن</string>
+    <string name="edit">ویرایش</string>
+    <string name="school_website">سایت دانشکده</string>
+    <string name="school_website_snackbar"> میتونی وبسایت دانشکده رو تو تنظیمات قرار بدی</string>
+
+    <string name="add_subject">اضافه کردن درس</string>
+    <string name="edit_subject">ویرایش درس</string>
+    <string name="teacher">استاد</string>
+    <string name="room">اتاق</string>
+    <string name="time">زمان</string>
+    <string name="save">ذخیره</string>
+    <string name="cancel">لغو</string>
+    <string name="time_to_dialog">پایان:</string>
+    <string name="time_from_dialog">شروع:</string>
+    <string name="subject_dialog">موضوع</string>
+    <string name="teacher_dialog">استاد : </string>
+    <string name="room_dialog">اتاق</string>
+    <string name="select_time">زمان رو انتخاب کن</string>
+    <string name="select_color">رنگ رو انتخاب کن</string>
+    <string name="choose_time">زمان رو انتخاب کن</string>
+    <string name="choose_date">تاریخ رو انتخاب کن</string>
+    <string name="choose_color">رنگ رو انتخاب کن</string>
+
+    <!-- Homeworks Activity strings -->
+    <string name="title_activity_homeworks">HomeworksActivity</string>
+    <string name="homeworks">تکالیف</string>
+    <string name="select_date">تاریخ رو انتخاب کن</string>
+    <string name="deadline_dialog">ددلاین</string>
+    <string name="deadline">ددلاین</string>
+    <string name="description_dialog">توضیحات</string>
+    <string name="desctiption">توضیحات</string>
+    <string name="date_error">نمیشه تاریخ نگذاری!</string>
+    <string name="edit_homework">ویرایش تکلیف</string>
+    <string name="add_homework">اضافه کردن تکلیف</string>
+    <string name="deadline_snackbar">تمرین بدون ددلاین؟ واقعاً؟</string>
+    <string name="date">تاریخ</string>
+
+    <!-- Notes Activity strings -->
+    <string name="notes">یادداشت ها</string>
+    <string name="title_dialog">تیتر</string>
+    <string name="add_note">اضافه کردن یادداشت</string>
+    <string name="edit_note">ویرایش یادداشت</string>
+    <string name="title_error">نمیشه تیتر نگذاری!</string>
+    <string name="title">تیتر</string>
+    <string name="saved">ذخیره شد</string>
+
+    <!-- Teachers Activity strings -->
+    <string name="teachers">اساتید</string>
+    <string name="add_teacher">اضافه کردن استاد</string>
+    <string name="edit_teacher">ویرایش استاد</string>
+    <string name="name_dialog">اسم</string>
+    <string name="post_dialog">پست</string>
+    <string name="phonenumber_dialog">شماره تماس</string>
+    <string name="email_dialog">ایمیل</string>
+    <string name="name">اسم</string>
+    <string name="phone_number">شماره تلفن</string>
+    <string name="post">پست</string>
+    <string name="email">ایمیل</string>
+
+    <!-- Exams Activity strings -->
+    <string name="exams">امتحان ها و کوییزها</string>
+    <string name="add_exam">اضافه کردن آزمون</string>
+    <string name="date_dialog">تاریخ</string>
+    <string name="time_dialog">زمان</string>
+
+    <!-- Settings Activity strings -->
+    <string name="sevendays_setting">هر ۷ روز هفته رو فعال کن</string>
+    <string name="school_website_setting">ویرایش سایت دانشکده</string>
+    <string name="school_website_setting_summary">سایت دانشکده رو عوض کن</string>
+
+    <!-- Notification -->
+    <string name="notification_title">درس امروز</string>
+    <string name="do_not_have_lessons">خوشبختانه امروز درسی نداری!</string>
+
+</resources>
