@@ -129,7 +129,7 @@ public class DayFragment extends Fragment{
 
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = getActivity().getLayoutInflater();

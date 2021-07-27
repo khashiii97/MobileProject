@@ -13,12 +13,14 @@ import com.example.finalproject.adapters.HomeworksAdapter;
 import com.example.finalproject.models.Course;
 import com.example.finalproject.models.Homework;
 
+import android.net.Uri;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DbExecutor {
     final static String TAG = "BookmarkModelView";
@@ -33,6 +35,7 @@ public class DbExecutor {
             KEEP_ALIVE_TIME,
             KEEP_ALIVE_TIME_UNIT,
             taskQueue);
+    public final AtomicInteger currentHomework = new AtomicInteger();
 
     public DbHelper db;
     Context context;
@@ -110,6 +113,16 @@ public class DbExecutor {
         });
     }
 
+    public void updateHomeworkPath(int id,String path) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                db.updateHomeworkPath(id,path);
+
+            }
+        });
+    }
+
     public void getHomeworks(HomeworksAdapter adapter, Activity activity){
         executorService.execute(new Runnable() {
             @Override
@@ -130,6 +143,14 @@ public class DbExecutor {
                     }
                 });
 
+            }
+        });
+    }
+    public void savePDFImage(int id, Uri uri){
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                PDFUtils.generateAndSaveFirstPageImage(context,uri,id);
             }
         });
     }

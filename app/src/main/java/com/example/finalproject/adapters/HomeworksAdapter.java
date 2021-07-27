@@ -1,7 +1,14 @@
 package com.example.finalproject.adapters;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -14,24 +21,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.R;
 import com.example.finalproject.Utils.DbExecutor;
+import com.example.finalproject.Utils.PDFUtils;
 import com.example.finalproject.models.Course;
 import com.example.finalproject.models.Homework;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.ViewHolder>  {
     Context context;
+    ActivityResultLauncher<Intent> getPdfActivity;
     public ArrayList<Homework> homeworks = new ArrayList<>();
     DbExecutor db;
-    public HomeworksAdapter(Context context) {
+    public HomeworksAdapter(Context context,ActivityResultLauncher<Intent> launcher) {
         this.context = context;
+        this.getPdfActivity = launcher;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final ImageView image;
@@ -77,10 +89,21 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.View
         holder.date.setText(homework.getDate());
         holder.description.setText(homework.getDescription());
         if (homework.getPath().equals("")){
-            holder.image.setBackgroundResource(R.drawable.pdf);
+            holder.image.setBackgroundResource(R.drawable.pdf1);
         }
         else{
-            //ToDo get image saved from pdf
+            String path = context.getFilesDir() + "/" + String.valueOf(homework.getId())+".jpg";
+            File imgFile = new  File(path);
+
+            if(imgFile.exists()){
+
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                holder.image.setImageBitmap(myBitmap);
+
+            }
+            else{
+                holder.image.setBackgroundResource(R.drawable.pdf);
+            }
         }
 
 
@@ -97,7 +120,10 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.View
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToDo
+                DbExecutor.getInstance(context).currentHomework.set(homework.getId());
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/pdf");
+                getPdfActivity.launch(intent);
             }
         });
         holder.image.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +134,20 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.View
                     Toast.makeText(context," فایلی برای این تمرین انتخاب نکردی!",Toast.LENGTH_LONG).show();
                 }
                 else{
+                    Intent intent=new Intent(Intent.ACTION_VIEW);
+                    Uri uri = Uri.parse(homework.getPath());
+                    Log.d("pdfffff", uri.toString());
+//                    Uri uri2 = Uri.parse("content://providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2FAdobe%20Acrobat%2Fmodulation.pdf");
+                    intent.setDataAndType(uri, "application/pdf");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    try
+                    {
+                        context.startActivity(intent);
+                    }
+                    catch(ActivityNotFoundException e)
+                    {
+                        Toast.makeText(context, "اپلیکشینی برای باز کردن فایل نداری!", Toast.LENGTH_LONG).show();
+                    }
 
                 }
             }
@@ -120,10 +160,20 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.View
         homeworks.addAll(loadedhomeworks);
         notifyDataSetChanged();
     }
-    public void addCourses(Homework newHomework){
+    public void addHomework(Homework newHomework){
         homeworks.add(newHomework);
         notifyDataSetChanged();
     }
+    public void updateHomeworkPath(int id,String path){
+        for(int i = 0; i < homeworks.size(); i++)
+        {
+            if (homeworks.get(i).getId() == id){
+                homeworks.get(i).setPath(path);
+            }
+        }
+    }
+
+
 
     @Override
     public int getItemCount() {

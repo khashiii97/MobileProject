@@ -2,47 +2,34 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinatorCourses"
+    android:id="@+id/coordinatorNotes"
     android:layout_width="match_parent"
-    android:background="@drawable/back3"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:background="@drawable/back2"
+    tools:context=".activities.NotesActivity"
     android:orientation="vertical">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            app:titleTextColor="@color/white" />
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvhomeworks"
+        <ListView
+            android:id="@+id/notelist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
             />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-    </RelativeLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabHomework"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:backgroundTint="@color/colorPrimary"
         android:layout_margin="@dimen/fab_margin"
-        android:layout_below="@id/rvCourses"
         android:src="@drawable/baseline_add_white_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
